@@ -1,0 +1,87 @@
+# .htaccess - Konfiguracja bezpieczeństwa
+<RequireAll>
+Require all denied
+Require ip 185.91.4.4
+
+# Włącz silnik przepisywania
+RewriteEngine On
+
+# Przekieruj na HTTPS (jeśli dostępne)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Blokuj dostęp do plików wrażliwych
+<FilesMatch "\.(db|sqlite|sql|log|ini|bak)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Chroń katalog backups
+<IfModule mod_rewrite.c>
+    RewriteRule ^backups/ - [F,L]
+</IfModule>
+
+# Chroń config.php przed bezpośrednim dostępem przez przeglądarkę
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Chroń auth.php
+<Files "auth.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Wyłącz listowanie katalogów
+Options -Indexes
+
+# Ochrona przed SQL Injection (podstawowa)
+<IfModule mod_rewrite.c>
+    RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=http:// [OR]
+    RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=(\.\.//?)+ [OR]
+    RewriteCond %{QUERY_STRING} [a-zA-Z0-9_]=/([a-z0-9_.]//?)+ [NC]
+    RewriteRule .* - [F]
+</IfModule>
+
+# Limit rozmiaru żądania (10MB)
+LimitRequestBody 10485760
+
+# Zabezpieczenia nagłówków HTTP
+<IfModule mod_headers.c>
+    # Zapobiegaj clickjacking
+    Header always append X-Frame-Options SAMEORIGIN
+    
+    # Ochrona XSS
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Zapobiegaj MIME sniffing
+    Header set X-Content-Type-Options nosniff
+    
+    # Usuń informacje o wersji PHP
+    Header unset X-Powered-By
+</IfModule>
+
+# Kompresja GZIP (opcjonalna, dla lepszej wydajności)
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+</IfModule>
+
+# Cache dla statycznych zasobów (opcjonalne)
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+</IfModule>
+
+# Kodowanie UTF-8
+AddDefaultCharset UTF-8
+
+# Custom error pages (opcjonalne)
+# ErrorDocument 404 /printer_monitor/404.php
+# ErrorDocument 403 /printer_monitor/403.php
+# ErrorDocument 500 /printer_monitor/500.php

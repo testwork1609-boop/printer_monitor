@@ -1,0 +1,5 @@
+|uSUWANIE DRUKAREK NIE DZIAŁA
+GDY AJE SRPAWDZ STATUS POKAZUJE ZE JEST 5 DRUKARKE A NIE MA
+pASEK PRZEIWJANIA LEWO/PRAWO DALEJ JEST DOPIEOR WIDOCZNY GDY PRZEIWNE  TORNE NA SAM DOL A MA BYC NA KONCU OKNA PRZEGLADRKI I BYC TAM ZAWSZE PRZEZ WZGLEUD CZY PRZEIWJAM STORNE GORA DOLe.
+
+po dodaniu lub edycji druakrek nalezy pozstacna stornie na ktorej obdywa sie eydcji bo teraz po edycji lub dodaniu drukarki przekieorwuj na dashboard.php

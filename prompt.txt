@@ -1,0 +1,6 @@
+1. w hederze nie ma byc przyciskow sprawdz statu ani dodaj drukarke one maja byc tylko w devices.php. dodatkow w heder avat i reszta panelu ma być wyrownana do prawej krawedzie strony
+2. Funckaj srpadz status generuje dodanie a wlasciwie powielenie drukarek, nie moza ich w ogole usuanc wiec funckja usuan tez chyba nei dzial.Nie da sie suaunc druakrek a wyseitlaja sie tylko komunikaty za kazdym razem ze dodano 4 druakrki, sprawdzono 4 druakrki itp a nic nie usuwa, do teog po klineiciu w usun przekierowuje dos trony php?action=delete&id=5 a tam wyglad jest surowy bez css 
+edycja uzadzen generuj bład:Warning: Cannot modify header information - headers already sent by (output started at D:\XAMPP\htdocs\printer_monitor\includes\header.php:18) in D:\XAMPP\htdocs\printer_monitor\content\devices.php on line 118
+po zalogowaniu sie strona otwiera sie w nowym oknie a nie powinna
+5.wszystkie druarki majac byc wyseitlane w taki sposob ze pasek do przesuwaiani w prawo lub lewo byl zawsze widoczny przy krawedzie okna przegldarki bo teraz jak jest wiecej druakrek najpier musze przesunac strone na sam dol i dopiero widze pasek zeby przewinac do go prawej. 
+komunikaaty o dodanych druakrak i inne  powinny wyseitlac sie gdy so potrzbene po danej czynnosci, a teraz jest po kazdej czynnosci wyseitlaja sie odrauz 3 komunikaty
